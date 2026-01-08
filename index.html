@@ -5,51 +5,64 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wedding Countdown</title>
+    
+    <!-- 1. Babel allows your browser to understand .tsx files without a build step -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- 2. Tailwind for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 3. Error handling to show a message if it fails -->
+    <script>
+      window.process = { env: { API_KEY: '' } };
+      window.onerror = function(msg, url, line, col, error) {
+        const root = document.getElementById('root');
+        if (root) {
+          root.innerHTML = `<div style="padding: 40px; font-family: sans-serif; text-align: center;">
+            <h1 style="color: #e11d48;">Oops! Loading Error</h1>
+            <p style="color: #666;">${msg}</p>
+            <div style="background: #f1f1f1; padding: 10px; margin-top: 20px; font-family: monospace; font-size: 12px; border-radius: 4px; text-align: left;">
+              File: ${url}<br>Line: ${line}
+            </div>
+            <p style="margin-top: 20px; font-size: 13px;">If you see "Unexpected token", your browser might be trying to load .tsx as plain JavaScript.</p>
+          </div>`;
+        }
+        return false;
+      };
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    
     <style>
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Inter', sans-serif;
-        overflow-x: hidden;
-        background-color: #f9f8f6; /* Soft stone background while loading */
-      }
-      .font-serif {
-        font-family: 'Playfair Display', serif;
-      }
-      .font-script {
-        font-family: 'Great Vibes', cursive;
-      }
+      body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background-color: #fcfaf8; }
+      .font-serif { font-family: 'Playfair Display', serif; }
+      .font-script { font-family: 'Great Vibes', cursive; }
       #root:empty::after {
-        content: "Loading your countdown...";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-family: 'Playfair Display', serif;
-        color: #a8a29e;
-        font-style: italic;
+        content: "Loading your timer...";
+        position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+        font-family: 'Playfair Display', serif; color: #a8a29e; font-style: italic;
       }
     </style>
-  <script type="importmap">
+
+    <script type="importmap">
 {
   "imports": {
-    "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom": "https://esm.sh/react-dom@^19.2.3",
-    "react-dom/client": "https://esm.sh/react-dom@^19.2.3/client",
+    "react": "https://esm.sh/react@19?dev",
+    "react-dom": "https://esm.sh/react-dom@19?dev",
+    "react-dom/client": "https://esm.sh/react-dom@19/client?dev",
+    "@google/genai": "https://esm.sh/@google/genai@1.3.0",
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
     "react/": "https://esm.sh/react@^19.2.3/"
   }
 }
 </script>
-</head>
+  </head>
   <body>
     <div id="root"></div>
-    <!-- This is the "start" button for your app code -->
-    <script type="module" src="index.tsx"></script>
+    
+    <!-- We use type="text/babel" so the Babel script we loaded above can find and translate this file -->
+    <script type="text/babel" data-type="module" src="./index.tsx"></script>
   </body>
 </html>
