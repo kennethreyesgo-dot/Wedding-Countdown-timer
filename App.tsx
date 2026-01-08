@@ -1,9 +1,9 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { WeddingConfig, TimeLeft } from './types';
-import { DEFAULT_CONFIG, THEMES } from './constants';
-import { CountdownDisplay } from './components/CountdownDisplay';
-import { SettingsPanel } from './components/SettingsPanel';
+import { WeddingConfig, TimeLeft } from './types.ts';
+import { DEFAULT_CONFIG, THEMES } from './constants.ts';
+import { CountdownDisplay } from './components/CountdownDisplay.tsx';
+import { SettingsPanel } from './components/SettingsPanel.tsx';
 
 const App: React.FC = () => {
   const [config, setConfig] = useState<WeddingConfig>(() => {

@@ -1,9 +1,23 @@
 
 import { GoogleGenAI, Type } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+// We check if process exists so the app doesn't crash on a white screen
+const getApiKey = () => {
+  try {
+    return process.env.API_KEY || '';
+  } catch (e) {
+    return '';
+  }
+};
+
+const ai = new GoogleGenAI({ apiKey: getApiKey() });
 
 export const generateWeddingQuote = async (names: string, daysLeft: number) => {
+  const apiKey = getApiKey();
+  if (!apiKey) {
+    return "Once in a while, right in the middle of an ordinary life, love gives us a fairy tale.";
+  }
+
   try {
     const response = await ai.models.generateContent({
       model: 'gemini-3-flash-preview',
