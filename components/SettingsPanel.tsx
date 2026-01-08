@@ -144,13 +144,14 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({ config, onSave, on
                 </h3>
                 <div className="space-y-3 pl-7">
                   <div className="p-3 bg-blue-50 border border-blue-100 rounded-lg text-xs text-blue-800 leading-relaxed">
-                    <strong>Stuck at "Custom Domain"?</strong> Look slightly higher on that same page for <strong>"Build and Deployment"</strong>.
+                    <strong>GitHub Pages Settings:</strong>
                   </div>
-                  <ul className="text-xs text-stone-500 space-y-2 list-disc ml-4">
-                    <li>Go to your Repo <strong>Settings</strong> → <strong>Pages</strong></li>
-                    <li>Under <strong>Source</strong>, select <strong>"Deploy from a branch"</strong></li>
-                    <li>Under <strong>Branch</strong>, choose <strong>"main"</strong> and click <strong>Save</strong></li>
-                    <li>Wait 1-2 minutes. A link will appear at the top: <em>"Your site is live at..."</em></li>
+                  <ul className="text-xs text-stone-500 space-y-3 list-disc ml-4">
+                    <li>Go to <strong>Settings</strong> → <strong>Pages</strong></li>
+                    <li><strong>Source:</strong> Select "Deploy from a branch"</li>
+                    <li><strong>Branch:</strong> Select <span className="font-bold text-stone-800">main</span></li>
+                    <li><strong>Folder:</strong> Select <span className="font-bold text-rose-600">/ (root)</span> <br/><span className="text-[10px] italic">(Do NOT select "docs")</span></li>
+                    <li>Click <strong>Save</strong> and wait 60 seconds</li>
                   </ul>
                 </div>
               </section>
@@ -161,7 +162,7 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({ config, onSave, on
                   Embed in Google Sites
                 </h3>
                 <div className="pl-7 space-y-3">
-                  <p className="text-xs text-stone-500">Copy the code below and paste it into the <strong>Embed → Embed Code</strong> tool in Google Sites.</p>
+                  <p className="text-xs text-stone-500">Copy this code and paste it into the <strong>Embed → Embed Code</strong> box on your Google Site.</p>
                   <div className="relative">
                     <pre className="bg-stone-900 p-4 rounded-lg text-[10px] text-stone-300 font-mono overflow-x-auto border border-stone-800 leading-normal">
                       {embedCode}
